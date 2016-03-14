@@ -1,0 +1,75 @@
+<App Theme="Basic" ClearColor="#eeeeeeff">
+	<DockPanel>
+
+		<JavaScript>
+                   var Observable = require("FuseJS/Observable");
+                   var Timer = require('FuseJS/Timer');
+
+                   var tag = Observable();
+                   var dbData = Observable();
+
+                                 
+                   var timer = Timer.create(function(){
+                   load();}, 1000, true);
+
+
+                   function load(){
+                   fetch('https://fusetags.firebaseio.com/tags.json', {
+                   	method: 'GET',
+                   	cache: 'default',
+                   	headers: { "Content-type": "application/json"}
+                   })
+                       .then(function(result) {
+                        if (result.status !== 200) {
+                        console.log("Something went wrong :(");
+                        return;}
+                       	return result.json();
+                     })
+                        
+                       .then(function(data) {
+                       	var keys = Object.keys(data);
+                        keys.forEach(function(key, index) {
+                          if (index >= dbData.length) {
+                             var value = data[key];
+                             dbData.add(value);
+
+                           }
+                        })
+                       });
+                     };
+
+                   function submit() {
+                       fetch('https://fusetags.firebaseio.com/tags.json', {
+                           method: 'POST',
+                           headers: { "Content-type": "application/json"},
+                           body: JSON.stringify({"tag": tag.value})
+                           });
+                   }           
+
+                   module.exports = {
+                       tag: tag,
+                       dbData: dbData,
+                       submit: submit
+                   };
+
+               </JavaScript>
+
+		<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+
+		<Text Dock="Top" Alignment="Center" FontSize="80" Margin="0,50,0,50" TextColor="#1e88e5">tag</Text>
+
+		<StackPanel Dock="Bottom" Margin="0,50,0,0">
+			<Button Text="tag" Clicked="{submit}" />
+			<TextInput Value="{tag}" TextAlignment="Center" />
+		</StackPanel>
+
+		<ScrollView ClipToBounds="true">
+			<StackPanel>
+				<Each Items="{dbData}">
+					<Text Value="{tag}" TextWrapping="Wrap" Margin="9" TextAlignment="Center" />
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</App>
