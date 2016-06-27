@@ -1,4 +1,4 @@
-<App Theme="Basic" ClearColor="#eeeeeeff">
+<App ClearColor="#eeeeeeff">
 	<DockPanel>
 
 		<JavaScript>
@@ -60,9 +60,9 @@
 
 		<Text Dock="Top" Alignment="Center" FontSize="80" Margin="0,50,0,50" TextColor="#1e88e5">tag</Text>
 
-		<StackPanel Dock="Bottom" Margin="0,50,0,0">
-			<Button Text="tag" Clicked="{submit}" />
-			<TextInput Value="{tag}" TextAlignment="Center" />
+		<StackPanel Dock="Bottom" Margin="0,50,0,20">
+			<Basic.TextInput Value="{tag}" TextAlignment="Center" PlaceholderText="Insert Tag Here..." Margin="0,0,0,-8"/>
+      			<Basic.Button Text="tag" Clicked="{submit}" />
 		</StackPanel>
 
 		<ScrollView ClipToBounds="true">
