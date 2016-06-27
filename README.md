@@ -1,6 +1,6 @@
 # Fuse Tags with Firebase
-Example of Jake´s app using Firebase instead of Parse through REST API.
-(https://github.com/yupferris/fuse-example-using-parse)
+Example of [Jake´s app](https://github.com/yupferris/fuse-example-using-parse) using Firebase instead of Parse through REST API.
+
 
 # Setup
 
@@ -16,4 +16,9 @@ Line 17 and 42.
 That´s it. 
 Have fun!
 
-Shout-out to Jake (https://github.com/yupferris) for the help.
+
+If have any questions contact me via [Twitter](https://twitter.com/luisrodriguezld).
+Shout-out to [Jake](https://github.com/yupferris) for the help.
+
+
+UPDATE: This example has been updated to use in Fuse 0.21
